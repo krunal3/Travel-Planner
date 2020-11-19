@@ -1,0 +1,91 @@
+<section class="search">
+  <div class="row">
+    <div class="col-md-6">
+      <form role="form" class="form-inline search-form">
+        <div class="col-md-4">
+          <legend>From</legend>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="locateOne" ng-change="start(locateOne)" placeholder="Start location..."
+              ng-value="tableOne.name">
+          </div>
+          <ul class="list-group auto-field">
+            <li class="list-group-item" ng-repeat="item in startData track by $index">
+              <a ng-click="addTolist(item, 'start')">
+            {{item.name}}
+          </a>
+            </li>
+          </ul>
+          <div class="time" ng-hide="now">
+            <input class="form-control" ng-model="tableOne.startTime" ng-model-options="{ updateOn: 'blur' }" placeholder="Select a date &amp; time..." moment-picker="startTime"
+              format="LL LT" locale="sv">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <legend>To:</legend>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="locateTwo" ng-change="destination(locateTwo)" placeholder="End location..."
+              ng-value="tableTwo.name">
+          </div>
+          <ul class="list-group auto-field">
+            <li class="list-group-item" ng-repeat="item in destinationData track by $index">
+              <a ng-click="addTolist(item, 'end')">
+            {{item.name}}
+          </a>
+            </li>
+          </ul>
+          <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" ng-click="searchNow()" ng-checked="now">
+            <label class="onoffswitch-label" for="myonoffswitch">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+          </label>
+          </div>
+          <span class="now">Now</span>
+          <button class="btn btn-info search-btn" ng-click="searchTimes(tableOne, tableTwo)">Search</button>
+        </div>
+      </form>
+      
+      <article class="searched">
+      <div class="timetable">
+        <uib-accordion class="panel panel-primary accordion-results" close-others="false">
+          <div uib-accordion-group class="panel-primary" ng-repeat="trip in trips track by $index" is-open="status.open">
+            <uib-accordion-heading class="accordion-results-header">
+              <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+              <h3 class="panel-title"><strong>Alternative {{$index + 1 }}</strong> <strong class="pull-right">{{trip.duration  | amDurationFormat : 'minute' }}</strong></h3>
+            </uib-accordion-heading>
+            <div uib-accordion-group class="panel-default" ng-repeat="ind_trip in trip.LegList.Leg" ng-if="ind_trip.type !== 'WALK'"
+              template-url="views/extras/accordion.html">
+              <uib-accordion-heading>
+                <strong>{{ind_trip.Origin.name}}</strong> <i class="glyphicon glyphicon-arrow-right"></i> <strong>{{ind_trip.Destination.name}}</strong>              Stops <strong>{{ind_trip.Stops.Stop.length}}</strong>
+              </uib-accordion-heading>
+              <ul class="stops">
+                <li class="stop" ng-repeat="stop in ind_trip.Stops.Stop">
+                  <p><strong>{{stop.name}}</strong> <span class="time">{{stop.depTime}}</span></p>
+                </li>
+              </ul>
+              <div ng-if="ind_trip.type === 'WALK'">
+                <p class="lead">Walking</p>
+              </div>
+            </div>
+            <a class="btn btn-primary next-btn" ng-click="showOnMap(trip)">
+                    View Map &amp; Details <i class="glyphicon glyphicon-triangle-right"></i>
+                  </a>
+          </div>
+        </uib-accordion>
+      </div>
+    </article>
+    </div>
+    <article class="detailed-view col-md-6" ng-show="tripResults">
+      <!-- <map on-create="updateMap(map)"></map> -->
+       <div id="mapbox" class="map"></div>       
+    </article>
+  </div> <!-- end of top row -->
+  <div class="row">
+      
+  </div>
+</section>
+
+
+<!-- <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+      This content is straight in the template.
+    </div> -->

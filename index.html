@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    
+    <link rel='stylesheet' href='css/bootstrap.min.css' />
+    <link rel='stylesheet' href='css/angular-moment-picker.min.css' />
+    <link rel="icon" href="">
+    
+    <link rel="stylesheet" href="css/main.css">
+    
+    <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran|Lato:400i" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+  </head>
+  <body ng-app="travelPlannerApp">
+    
+    <div class="header">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/">Travel Planner</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+    <div ng-view=""></div>
+    </div>
+  
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <script src="scripts/external/jquery.js"></script>
+    <script src="scripts/external/angular.js"></script>
+    <script src="scripts/external/bootstrap.js"></script>
+    <script src="scripts/external/angular-animate.js"></script>
+    <script src="scripts/external/angular-cookies.js"></script>
+    <script src="scripts/external/angular-resource.js"></script>
+    <script src="scripts/external/angular-route.js"></script>
+    <script src="scripts/external/angular-sanitize.js"></script>
+    <script src="scripts/external/angular-touch.js"></script>
+    <script src="scripts/external/moment.js"></script>
+    <script src="scripts/external/angular-moment-picker.min.js"></script>
+    <script src="scripts/external/angular-moment.js"></script>
+    
+    <script src="scripts/external/sv.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/ui-boot.min.js"></script>
+    <script src="scripts/auto.js"></script>
+    <script src="scripts/ang-clock.min.js"></script>
+    <script src="scripts/services/planner.js"></script>
+    <script src="scripts/controllers/search.js"></script>
+
+        
+</body>
+</html>
